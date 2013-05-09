@@ -805,6 +805,9 @@ do
             show_report(array('which' => 'index', 'category' => 'auth', 'realm' => $matches[1]));
         }
     }
+
+    $_response_keys['Access-Control-Allow-Origin'] = 'Access-Control-Allow-Origin';
+    $_response_headers['Access-Control-Allow-Origin'][0] = '*';
 }
 while ($_retry);
 
@@ -829,9 +832,6 @@ if (!isset($_proxify[$_content_type]))
         $_response_keys['content-length'] = 'Content-Length';
         $_response_headers['content-length'][0] = $_content_length;
     }
-
-    $_response_keys['Access-Control-Allow-Origin'] = 'Access-Control-Allow-Origin';
-    $_response_headers['Access-Control-Allow-Origin'][0] = '*';
     
     $_response_headers   = array_filter($_response_headers);
     $_response_keys      = array_filter($_response_keys);
